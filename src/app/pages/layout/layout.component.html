@@ -1,0 +1,22 @@
+<header id="header">
+  <div class="container">
+
+    <div id="logo" class="pull-left">
+      <h1><a [routerLink]="['/']" class="scrollto">Workshop Redux</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
+    </div>
+
+    <nav id="nav-menu-container">
+      <ul class="nav-menu">
+        <li routerLinkActive="menu-active"><a routerLink="/">Projetos</a></li>
+        <li><a href="" (click)="onClickLogout($event)">Logout</a></li>
+      </ul>
+    </nav><!-- #nav-menu-container -->
+
+  </div>
+</header><!-- #header -->
+
+<div style="margin-top: 130px;">
+  <router-outlet></router-outlet>
+</div>

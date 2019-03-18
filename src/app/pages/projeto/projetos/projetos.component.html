@@ -1,0 +1,51 @@
+<div class="loading" *ngIf="isLoading$ | async">Loading&#8230;</div>
+<div class="container">
+  <div class="row">
+    <section class="content">
+      <div class="col-md-12 col-md-offset-2">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="float-left" style="margin-left: 20px;">
+              <small style="margin-top:30px;" class="form-text text-muted">Total de projetos: {{(projetos$ | async).length}}</small>
+            </div>
+            <div class="float-right" style="margin: 15px 20px 30px;">
+              <a class="btn btn-primary" [routerLink]="['/cadastro']" routerLinkActive="router-link-active" >+ Novo</a>
+            </div>
+            <div class="table-container">
+              <table class="table table-filter">
+                <tbody>
+                  <tr *ngFor="let projeto of projetos$ | async">
+                    <td>
+                      <div class="media">
+                        <a href="#" class="pull-left">
+                          <img src="https://s3.amazonaws.com/uifaces/faces/twitter/fffabs/128.jpg" class="media-photo">
+                        </a>
+                        <div class="media-body">
+                          <span class="media-meta pull-right">Data cadastro: {{projeto.dataCriacao}} - Valor: {{projeto.valor}}</span>
+                          <h4 class="title">
+                            {{projeto.nome}}
+                            <span class="pull-right pagado" [ngClass]="{'pagado': projeto.quitado, 'pendiente': !projeto.quitado}">
+                              {{projeto.quitado ? '(Quitado)' : 'Pedente'}}
+                            </span>
+                          </h4>
+                          <p class="summary">
+                            {{projeto.descricao}}
+                          </p>
+                        </div>
+                        <div class="float-right">
+                            <button class="btn btn-danger" (click)="onClickDeletar(projeto)">Excluir</button>
+                            &nbsp;
+                            <a [routerLink]="['/cadastro', projeto.id]" class="btn btn-primary">Editar</a>
+                          </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
